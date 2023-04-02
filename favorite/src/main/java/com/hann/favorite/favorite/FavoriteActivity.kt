@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hann.core.ui.UserAdapter
 import com.hann.core.utils.Constants
 import com.hann.favorite.di.favoriteModule
-import com.hann.githubappmvvm.databinding.ActivityFavoriteBinding
+import com.hann.favorite.favorite.databinding.ActivityFavoriteBinding
 import com.hann.githubappmvvm.presentation.detail.DetailUserActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.GlobalContext.loadKoinModules

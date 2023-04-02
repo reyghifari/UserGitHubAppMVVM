@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.hann.core.data.source.local.dao.UserDao
 import com.hann.core.data.source.local.entity.UserEntity
 
-@Database(entities = [UserEntity::class], version = 1)
+@Database(entities = [UserEntity::class], version = 1, exportSchema = false)
 abstract class UserDatabase : RoomDatabase() {
 
     abstract fun userDao() : UserDao

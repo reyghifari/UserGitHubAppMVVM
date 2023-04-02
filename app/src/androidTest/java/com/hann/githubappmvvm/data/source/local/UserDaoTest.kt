@@ -7,9 +7,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
-import com.hann.githubappmvvm.data.source.local.dao.UserDao
-import com.hann.githubappmvvm.data.source.local.database.UserDatabase
-import com.hann.githubappmvvm.data.source.local.entity.UserEntity
+import com.hann.core.data.source.local.dao.UserDao
+import com.hann.core.data.source.local.database.UserDatabase
+import com.hann.core.data.source.local.entity.UserEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
