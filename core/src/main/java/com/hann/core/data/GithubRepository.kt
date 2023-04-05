@@ -18,93 +18,93 @@ class GithubRepository constructor(
     private val appExecutors : AppExecutors,
 ) : IGithubRepository {
 
-    override fun getSearchUser(username: String): Flow<com.hann.core.data.Resource<List<User>>> = flow {
+    override fun getSearchUser(username: String): Flow<Resource<List<User>>> = flow {
         try {
-            emit(com.hann.core.data.Resource.Loading())
+            emit(Resource.Loading())
             when(val listUser = remoteDataSource.getSearchUser(username).first()){
                 is ApiResponse.Success -> {
                     val userList = DataMapper.mapResponsesToEntities(listUser.data)
                     localDataSource.insertUser(userList)
                     val detailUser = DataMapper.mapEntitiesToDomain(userList)
-                    emit(com.hann.core.data.Resource.Success(detailUser))
+                    emit(Resource.Success(detailUser))
                 }
-                is ApiResponse.Empty -> emit(com.hann.core.data.Resource.Error("User not found"))
-                is ApiResponse.Error -> emit(com.hann.core.data.Resource.Error(listUser.errorMessage))
+                is ApiResponse.Empty -> emit(Resource.Error("User not found"))
+                is ApiResponse.Error -> emit(Resource.Error(listUser.errorMessage))
             }
         }catch (e: HttpException){
             emit(
-                com.hann.core.data.Resource.Error(
+                Resource.Error(
                     e.localizedMessage ?: "An unexpected Error Occurred"
                 )
             )
         }catch (e: IOException){
-            emit(com.hann.core.data.Resource.Error("Couldn't reach server. Check your internet server"))
+            emit(Resource.Error("Couldn't reach server. Check your internet server"))
         }
     }
 
-    override fun getDetailUser(username: String): Flow<com.hann.core.data.Resource<DetailUser>>  = flow {
+    override fun getDetailUser(username: String): Flow<Resource<DetailUser>>  = flow {
         try {
-            emit(com.hann.core.data.Resource.Loading())
+            emit(Resource.Loading())
             when(val listUser = remoteDataSource.getDetailUser(username).first()){
                 is ApiResponse.Success -> {
                     val detailUser = DataMapper.mapResponseToDomain(listUser.data)
-                    emit(com.hann.core.data.Resource.Success(detailUser))
+                    emit(Resource.Success(detailUser))
                 }
-                is ApiResponse.Empty -> emit(com.hann.core.data.Resource.Error("User not found"))
-                is ApiResponse.Error -> emit(com.hann.core.data.Resource.Error(listUser.errorMessage))
+                is ApiResponse.Empty -> emit(Resource.Error("User not found"))
+                is ApiResponse.Error -> emit(Resource.Error(listUser.errorMessage))
             }
         }catch (e: HttpException){
             emit(
-                com.hann.core.data.Resource.Error(
+                Resource.Error(
                     e.localizedMessage ?: "An unexpected Error Occurred"
                 )
             )
         }catch (e: IOException){
-            emit(com.hann.core.data.Resource.Error("Couldn't reach server. Check your internet server"))
+            emit(Resource.Error("Couldn't reach server. Check your internet server"))
         }
     }
 
-    override fun getFollowing(username: String): Flow<com.hann.core.data.Resource<List<User>>> = flow {
+    override fun getFollowing(username: String): Flow<Resource<List<User>>> = flow {
         try {
-            emit(com.hann.core.data.Resource.Loading())
+            emit(Resource.Loading())
             when(val listUser = remoteDataSource.getFollowing(username).first()){
                 is ApiResponse.Success -> {
                     val detailUser = DataMapper.mapResponsesToDomainFollowing(listUser.data)
-                    emit(com.hann.core.data.Resource.Success(detailUser))
+                    emit(Resource.Success(detailUser))
                 }
-                is ApiResponse.Empty -> emit(com.hann.core.data.Resource.Error("User not found"))
-                is ApiResponse.Error -> emit(com.hann.core.data.Resource.Error(listUser.errorMessage))
+                is ApiResponse.Empty -> emit(Resource.Error("User not found"))
+                is ApiResponse.Error -> emit(Resource.Error(listUser.errorMessage))
             }
         }catch (e: HttpException){
             emit(
-                com.hann.core.data.Resource.Error(
+                Resource.Error(
                     e.localizedMessage ?: "An unexpected Error Occurred"
                 )
             )
         }catch (e: IOException){
-            emit(com.hann.core.data.Resource.Error("Couldn't reach server. Check your internet server"))
+            emit(Resource.Error("Couldn't reach server. Check your internet server"))
         }
     }
 
-    override fun getFollower(username: String): Flow<com.hann.core.data.Resource<List<User>>> = flow {
+    override fun getFollower(username: String): Flow<Resource<List<User>>> = flow {
         try {
-            emit(com.hann.core.data.Resource.Loading())
+            emit(Resource.Loading())
             when(val listUser = remoteDataSource.getFollowers(username).first()){
                 is ApiResponse.Success -> {
                     val detailUser = DataMapper.mapResponsesToDomainFollower(listUser.data)
-                    emit(com.hann.core.data.Resource.Success(detailUser))
+                    emit(Resource.Success(detailUser))
                 }
-                is ApiResponse.Empty -> emit(com.hann.core.data.Resource.Error("User not found"))
-                is ApiResponse.Error -> emit(com.hann.core.data.Resource.Error(listUser.errorMessage))
+                is ApiResponse.Empty -> emit(Resource.Error("User not found"))
+                is ApiResponse.Error -> emit(Resource.Error(listUser.errorMessage))
             }
         }catch (e: HttpException){
             emit(
-                com.hann.core.data.Resource.Error(
+              Resource.Error(
                     e.localizedMessage ?: "An unexpected Error Occurred"
                 )
             )
         }catch (e: IOException){
-            emit(com.hann.core.data.Resource.Error("Couldn't reach server. Check your internet server"))
+            emit(Resource.Error("Couldn't reach server. Check your internet server"))
         }
     }
 

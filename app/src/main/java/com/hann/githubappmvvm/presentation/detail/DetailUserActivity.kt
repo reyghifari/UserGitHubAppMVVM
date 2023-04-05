@@ -22,7 +22,6 @@ class DetailUserActivity : AppCompatActivity() {
     private lateinit var userFavorite: User
     private val detailViewModel: DetailUserViewModel by viewModel()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)

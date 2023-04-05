@@ -10,3 +10,4 @@ data class User(
     val login: String,
     val isFavorite : Boolean
 ):Parcelable
+
