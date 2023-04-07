@@ -45,19 +45,19 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun setData(user : UserListState){
             if (user.isLoading){
-                binding.shimmerLayout.visibility = View.VISIBLE
-                binding.shimmerLayout.startShimmer()
-                binding.rvUser.visibility = View.GONE
+                binding.shimmerLayoutMain.visibility = View.VISIBLE
+                binding.shimmerLayoutMain.startShimmer()
+                binding.rvUserMain.visibility = View.GONE
             }
             if (user.error.isNotBlank()){
-                binding.rvUser.visibility = View.GONE
-                binding.shimmerLayout.visibility = View.GONE
-                binding.viewError.root.visibility = View.VISIBLE
+                binding.rvUserMain.visibility = View.GONE
+                binding.shimmerLayoutMain.visibility = View.GONE
+                binding.viewErrorMain.root.visibility = View.VISIBLE
             }
         if (user.users.isNotEmpty()){
-            binding.shimmerLayout.stopShimmer()
-            binding.shimmerLayout.visibility = View.GONE
-            binding.rvUser.visibility = View.VISIBLE
+            binding.shimmerLayoutMain.stopShimmer()
+            binding.shimmerLayoutMain.visibility = View.GONE
+            binding.rvUserMain.visibility = View.VISIBLE
             userAdapter.setData(user.users)
         }
 
@@ -111,9 +111,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun initRecyclerView(){
         userAdapter = UserAdapter()
-        binding.rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
-        binding.rvUser.adapter = userAdapter
-        binding.rvUser.setHasFixedSize(false)
+        binding.rvUserMain.layoutManager = LinearLayoutManager(this@MainActivity)
+        binding.rvUserMain.adapter = userAdapter
+        binding.rvUserMain.setHasFixedSize(false)
         userAdapter.onItemClick = {
             val intent = Intent(this, DetailUserActivity::class.java)
             intent.putExtra(Constants.PARAM_USERNAME, it.login)

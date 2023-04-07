@@ -3,6 +3,7 @@ package com.hann.core.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hann.core.R
@@ -18,9 +19,10 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     fun setData(newListData: List<User>?) {
         if (newListData == null) return
+        val diffResult = DiffUtil.calculateDiff(MyDiffUtil(listData, newListData))
         listData.clear()
         listData.addAll(newListData)
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,8 +46,8 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
             with(binding){
                 Glide.with(itemView.context)
                     .load(data.avatar_url)
-                    .into(imageView)
-                textView.text = data.login
+                    .into(imageViewUserLayout)
+                tvUserLayout.text = data.login
             }
         }
 
@@ -55,5 +57,18 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
             }
         }
 
+    }
+
+    class MyDiffUtil(private val oldList: List<User>, private val newList: List<User>): DiffUtil.Callback() {
+        override fun getOldListSize() = oldList.size
+        override fun getNewListSize() = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].id == newList[newItemPosition].id
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
     }
 }

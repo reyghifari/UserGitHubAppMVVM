@@ -53,17 +53,17 @@ class FollowFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner){
                 users ->
             if (users.isLoading){
-                binding.shimmerLayout.startShimmer()
-                binding.shimmerLayout.visibility = View.VISIBLE
+                binding.shimmerLayoutFollow.startShimmer()
+                binding.shimmerLayoutFollow.visibility = View.VISIBLE
             }
             if (users.error.isNotBlank()){
-                binding.shimmerLayout.visibility = View.GONE
-                binding.viewError.root.visibility = View.VISIBLE
-                binding.viewError.tvError.text = users.error
+                binding.shimmerLayoutFollow.visibility = View.GONE
+                binding.viewErrorFollow.root.visibility = View.VISIBLE
+                binding.viewErrorFollow.tvError.text = users.error
             }
             if (users.users.isNotEmpty()){
-                binding.shimmerLayout.stopShimmer()
-                binding.shimmerLayout.visibility = View.GONE
+                binding.shimmerLayoutFollow.stopShimmer()
+                binding.shimmerLayoutFollow.visibility = View.GONE
                 adapter.setData(users.users)
             }
         }

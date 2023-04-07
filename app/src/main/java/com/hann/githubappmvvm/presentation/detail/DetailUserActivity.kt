@@ -46,7 +46,7 @@ class DetailUserActivity : AppCompatActivity() {
 
         supportActionBar?.elevation = 0f
 
-        binding.btnFloatFav.setOnClickListener {
+        binding.btnFloatDetail.setOnClickListener {
             statusFavorite = !statusFavorite
             setStatusFavorite(statusFavorite)
             detailViewModel.setFavoriteUser(userFavorite, statusFavorite)
@@ -87,9 +87,9 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun setStatusFavorite(statusFavorite: Boolean) {
         if (statusFavorite) {
-            binding.btnFloatFav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite))
+            binding.btnFloatDetail.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite))
         } else {
-            binding.btnFloatFav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_unfavorite))
+            binding.btnFloatDetail.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_unfavorite))
         }
     }
 

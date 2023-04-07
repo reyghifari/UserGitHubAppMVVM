@@ -8,14 +8,14 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_user"
+        android:id="@+id/rv_user_main"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_layout_user"/>
 
     <include
-        android:id="@+id/view_error"
+        android:id="@+id/view_error_main"
         layout="@layout/view_error"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,7 +25,7 @@
 
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_layout"
+        android:id="@+id/shimmer_layout_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

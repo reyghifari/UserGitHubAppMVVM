@@ -11,12 +11,12 @@
         tools:listitem="@layout/item_layout_user"/>
 
     <include
-        android:id="@+id/view_error"
+        android:id="@+id/view_error_follow"
         layout="@layout/view_error"
         android:visibility="gone"/>
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_layout"
+        android:id="@+id/shimmer_layout_follow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
