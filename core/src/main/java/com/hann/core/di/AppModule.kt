@@ -15,16 +15,22 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import com.hann.core.BuildConfig
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 
 val databaseModule = module {
     factory {
         get<UserDatabase>().userDao()
     }
     single {
+        val passphrase : ByteArray =  SQLiteDatabase.getBytes("user".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             UserDatabase::class.java, "user.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
