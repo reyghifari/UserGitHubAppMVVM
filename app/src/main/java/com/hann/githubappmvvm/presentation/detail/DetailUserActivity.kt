@@ -35,6 +35,7 @@ class DetailUserActivity : AppCompatActivity() {
         detailViewModel.state.observe(this, Observer(this::showDetailState))
         detailViewModel.favorite.observe(this){
             userFavorite = it
+            statusFavorite = it.isFavorite
         }
 
         val sectionPagerAdapter = SectionPagerAdapter(this)
