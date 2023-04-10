@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit
 import com.hann.core.BuildConfig
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 
 val databaseModule = module {
     factory {
@@ -36,10 +37,24 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
+        val hostname = BuildConfig.HOSTNAME
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, BuildConfig.PINNER_URL_ONE)
+            .add(hostname, BuildConfig.PINNER_URL_TWO)
+            .add(hostname, BuildConfig.PINNER_URL_THREE)
+            .build()
+
         OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(
+                if (BuildConfig.DEBUG) {
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                } else {
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+                }
+            )
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner)
             .build()
     }
     single {

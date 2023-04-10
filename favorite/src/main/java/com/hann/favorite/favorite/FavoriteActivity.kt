@@ -30,11 +30,11 @@ class FavoriteActivity : AppCompatActivity() {
 
         favoriteViewModel.favoriteUser.observe(this) { favoriteUser ->
             if (favoriteUser.isNotEmpty()){
-                binding.emptyFavoriteFavorite.visibility = View.GONE
+                binding.emptyFavoriteFavorite.lottieLayerName.visibility = View.GONE
                 binding.rvFavorite.visibility = View.VISIBLE
                 userAdapter.setData(favoriteUser)
             }else{
-                binding.emptyFavoriteFavorite.visibility = View.VISIBLE
+                binding.emptyFavoriteFavorite.lottieLayerName.visibility  = View.VISIBLE
                 binding.rvFavorite.visibility = View.GONE
             }
         }
