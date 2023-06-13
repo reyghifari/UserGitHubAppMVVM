@@ -1,9 +1,6 @@
 package com.hann.githubappmvvm.presentation.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.hann.core.data.Resource
 import com.hann.core.domain.usecase.GithubUseCase
 import kotlinx.coroutines.delay
@@ -13,14 +10,15 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val githubUseCase: GithubUseCase) : ViewModel() {
+class MainViewModel(
+    private val githubUseCase: GithubUseCase
+) : ViewModel() {
 
     private val _state = MutableLiveData<UserListState>()
     val state : LiveData<UserListState> = _state
 
     private val _isLoadingSplash = MutableStateFlow(true)
     val isLoadingSplash = _isLoadingSplash.asStateFlow()
-
 
     init {
         viewModelScope.launch {

@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class User(
-    val avatar_url: String,
-    val id: Int,
-    val login: String,
+        val avatar_url: String,
+        val id: Int,
+        val login: String,
     val isFavorite : Boolean
 ):Parcelable
 

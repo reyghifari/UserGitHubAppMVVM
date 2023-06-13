@@ -28,7 +28,7 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        userFavorite = intent.getParcelableExtra(Constants.PARAM_USER)!!
+        userFavorite = intent.getParcelableExtra<User>(Constants.PARAM_USER)!!
 
         detailViewModel.userFavorite(userFavorite.id.toString())
 
