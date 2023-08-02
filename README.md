@@ -44,9 +44,9 @@ Implement encryption on Room Database with SQLCipher on UserGithubAppMVVM.
 
 The use of multi-modules in software development provides advantages in separation of functionality, dependency management, reusability, team collaboration, testing and scalability.
 
--Module Favorite User: This module is responsible for managing the list of user favorites in the application.
--Module Core: This module serves as the core of the application and contains components that can be used by other modules.
--Module App: This module is the main application module that combines and uses the functionality of the Favorite User and Core modules.
+-Module Favorite User: This module is responsible for managing the list of user favorites in the application. <br>
+-Module Core: This module serves as the core of the application and contains components that can be used by other modules.<br>
+-Module App: This module is the main application module that combines and uses the functionality of the Favorite User and Core modules.<br>
 
 ![architecture](readphoto/modular.png)
 
